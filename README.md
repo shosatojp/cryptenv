@@ -1,5 +1,7 @@
 # `cryptenv`
 
+[![Rust](https://github.com/shosatojp/cryptenv/actions/workflows/rust.yml/badge.svg)](https://github.com/shosatojp/cryptenv/actions/workflows/rust.yml)
+
 A transparent environment variables decryptor.
 
 ## Install
