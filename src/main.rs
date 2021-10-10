@@ -51,8 +51,21 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             for (ref key, ref value) in std::env::vars() {
                 if value.starts_with(PREFIX) {
                     // decrypt
-                    let (_, enc) = value.split_at(PREFIX.len());
-                    let dec = crypto::decrypt(orig_key.as_bytes(), &base64::decode(enc)?)?;
+                let (_, enc_base64) = value.split_at(PREFIX.len());
+                let enc = match base64::decode(enc_base64) {
+                    Ok(enc) => enc,
+                    Err(_) => {
+                        eprintln!("failed to decode base64: {}, skip", key);
+                        continue;
+                    }
+                };
+                let dec = match crypto::decrypt(orig_key.as_bytes(), &enc) {
+                    Ok(dec) => dec,
+                    Err(_) => {
+                        eprintln!("failed to decrypt: {}, skip", key);
+                        continue;
+                    }
+                };
                     let data = String::from_utf8(dec).unwrap();
                     proc.env(key, &data);
                 } else {
