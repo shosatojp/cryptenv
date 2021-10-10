@@ -41,25 +41,19 @@ cryptenv -- env | grep TOP_SECRET
 
 ### Annoying to type password everytime?
 
-1. create this function on your `~/.bashrc`
+1. Create this function in your `~/.bashrc`.
 
     ```sh
-    function cryptenv-save() {
-        local varname=CRYPTENV_PASSWORD
-        if [ ! -v $varname ];then
-            read -s -p 'password? ' $varname
-            echo
-            export $varname
-        fi
-        cryptenv --password-from $varname $@
+    function cryptenv () { 
+        local varname=CRYPTENV_PASSWORD;
+        if [ ! -v $varname ]; then
+            read -s -p 'password? ' $varname;
+            echo;
+            export $varname;
+        fi;
+        $(which cryptenv) --password-from $varname $@
     }
     ```
 
-2. then use `cryptenv-save` instead of `cryptenv`
-
-    ```sh
-    cryptenv-save -- env | grep TOP_SECRET
-    ```
-
-    - the password is required at first time
-    - after that, the password stored in the env var of the shell
+    - A password is required only the first time.
+    - Then, use the password stored in the env var of the shell without prompting.
