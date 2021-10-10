@@ -1,6 +1,6 @@
 [package]
 name = "cryptenv"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Sho Sato <me@shosato.jp>"]
 description = "A transparent environment variables decryptor."
 repository = "https://github.com/shosatojp/cryptenv"
