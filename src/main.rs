@@ -5,7 +5,6 @@ use clap::crate_name;
 #[macro_use]
 mod cli;
 mod crypto;
-mod util;
 
 extern crate aes;
 extern crate base64;
@@ -13,7 +12,6 @@ extern crate block_modes;
 extern crate clap;
 extern crate openssl;
 extern crate rand;
-extern crate regex;
 extern crate rpassword;
 extern crate sha2;
 
