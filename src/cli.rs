@@ -14,10 +14,16 @@ pub fn build_cli() -> App<'static, 'static> {
         )
         .arg(
             Arg::with_name("list")
-                .short("l")
-                .long("list")
-                .help("list crypted env vars")
-                .takes_value(false),
+            .short("l")
+            .long("list")
+            .help("list crypted env vars")
+            .takes_value(false),
+        )
+        .arg(
+            Arg::with_name("password-from")
+                .long("password-from")
+                .help("Name of env var which contains password. Use like `PASSWORD`, not `$PASSWORD`.")
+                .takes_value(true),
         )
         .arg(
             Arg::with_name("command")

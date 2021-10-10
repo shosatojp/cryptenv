@@ -39,7 +39,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let mut data_buf: Vec<u8> = Vec::new();
         file.read_to_end(&mut data_buf)?;
 
-        let orig_key = rpassword::prompt_password_stderr("password? ")?;
+        let orig_key = match matches.value_of("password-from") {
+            Some(var_name) => std::env::var(var_name)?,
+            None => rpassword::prompt_password_stderr("password? ")?,
+        };
         let enc = crypto::encrypt(orig_key.as_bytes(), &data_buf)?;
         println!("{}{}", PREFIX, base64::encode(enc));
         return Ok(());
@@ -53,7 +56,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let mut proc = std::process::Command::new(command.nth(0).unwrap());
         proc.env_clear();
 
-        let orig_key = rpassword::prompt_password_stderr("password? ")?;
+        let orig_key = match matches.value_of("password-from") {
+            Some(var_name) => std::env::var(var_name)?,
+            None => rpassword::prompt_password_stderr("password? ")?,
+        };
 
         for (ref key, ref value) in std::env::vars() {
             if value.starts_with(PREFIX) {
