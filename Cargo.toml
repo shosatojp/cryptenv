@@ -1,6 +1,10 @@
 [package]
 name = "cryptenv"
 version = "0.0.1"
+author = "Sho Sato <me@shosato.jp>"
+description = "A transparent environment variables decryptor."
+repository = "https://github.com/shosatojp/cryptenv"
+readme = "README.md"
 
 [dependencies]
 clap = "^2.33.3"
