@@ -1,5 +1,7 @@
 use std::{io::Read, process::exit};
 
+use clap::crate_name;
+
 #[macro_use]
 mod cli;
 mod crypto;
@@ -15,6 +17,10 @@ extern crate regex;
 extern crate sha2;
 
 const PREFIX: &str = "cryptenv://";
+
+fn print_minimal_usage() {
+    eprintln!("run \"{} -h\" for more help", crate_name!())
+}
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let app = cli::build_cli();
@@ -37,8 +43,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let orig_key = util::get_key_from_stdin()?;
         let enc = crypto::encrypt(orig_key.as_bytes(), &data_buf);
         println!("{}{}", PREFIX, base64::encode(enc));
-    } else {
-        let mut command = matches.values_of("command").expect("command is required");
+            // decription
+            let mut command = matches.values_of("command").unwrap_or_else(|| {
+                eprintln!("command is required");
+                print_minimal_usage();
+                exit(1);
+            });
         let mut proc = std::process::Command::new(command.nth(0).unwrap());
         proc.env_clear();
 
