@@ -58,7 +58,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
 
         proc.args(command.skip(0));
-        proc.spawn()?;
+            proc.spawn()?.wait()?;
     }
     Ok(())
 }
