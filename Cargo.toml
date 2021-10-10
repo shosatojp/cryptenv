@@ -1,0 +1,17 @@
+[package]
+name = "cryptenv"
+version = "0.0.1"
+
+[dependencies]
+clap = "^2.33.3"
+regex = "1"
+openssl = "^0.10.36"
+aes = "^0.7.5"
+block-modes = "^0.8.1"
+rand = "^0.8.4"
+sha2 = "^0.9.8"
+base64 = "^0.13.0"
+
+[[bin]]
+name = "cryptenv"
+path = "src/main.rs"
