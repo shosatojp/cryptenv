@@ -5,6 +5,7 @@ author = "Sho Sato <me@shosato.jp>"
 description = "A transparent environment variables decryptor."
 repository = "https://github.com/shosatojp/cryptenv"
 readme = "README.md"
+license = "MIT"
 
 [dependencies]
 clap = "^2.33.3"
