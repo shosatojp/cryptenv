@@ -4,6 +4,8 @@
 
 A transparent environment variables decryptor.
 
+- encrypt with AES-256-CBC
+
 ## Install
 
 ```sh
