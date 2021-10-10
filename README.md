@@ -51,7 +51,7 @@ cryptenv -- env | grep TOP_SECRET
             echo;
             export $varname;
         fi;
-        $(which cryptenv) --password-from $varname $@
+        $(which cryptenv) --password-from $varname "$@"
     }
     ```
 
