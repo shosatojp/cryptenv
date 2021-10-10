@@ -16,6 +16,7 @@ block-modes = "^0.8.1"
 rand = "^0.8.4"
 sha2 = "^0.9.8"
 base64 = "^0.13.0"
+rpassword = "5.0"
 
 [[bin]]
 name = "cryptenv"

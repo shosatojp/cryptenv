@@ -6,12 +6,6 @@ pub fn build_cli() -> App<'static, 'static> {
         .author(crate_authors!())
         .about(crate_description!())
         .arg(
-            Arg::with_name("enc")
-                .short("e")
-                .long("enc")
-                .takes_value(false),
-        )
-        .arg(
             Arg::with_name("data")
                 .short("d")
                 .long("data")
