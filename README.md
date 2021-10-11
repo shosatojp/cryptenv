@@ -41,7 +41,7 @@ cryptenv -- env | grep TOP_SECRET
 
 ### Annoying to type password everytime?
 
-1. Create this function in your `~/.bashrc`.
+1. Create this function in your `~/.bashrc` (bash 4.2+).
 
     ```sh
     function cryptenv () { 
